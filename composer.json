@@ -1,0 +1,20 @@
+{
+    "name": "wjbrown/proteus-slim",
+    "description": "Image Manipulation and Caching in a Slim Server",
+    "keywords": ["image", "imagick"],
+    "homepage": "https://github.com/wjbrown/php-proteus-slim",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Josh Brown",
+            "email": "wjbrown@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.3 || ^7.0",
+        "ext-imagick": "*",
+        "wjbrown/proteus": "dev-master",
+        "slim/slim": "^3.0",
+        "slim/php-view": "^2.2"
+    }
+}
