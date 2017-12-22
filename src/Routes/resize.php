@@ -2,6 +2,9 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
+use \Proteus\Image;
+use \Proteus\ImageCache;
+
 // resize the image
 $app->get('/resize/{image}', function (Request $request, Response $response) {
     
@@ -11,9 +14,9 @@ $app->get('/resize/{image}', function (Request $request, Response $response) {
 
     $img = $imgcache->remember($cachekey, function() use ($request) {
         try {
-            $img = new Image(IMG_PATH . DS . $request->getAttribute('image'));
+            $img = Image::create(ROOT . DS . 'data' . DS . 'img' . DS . $request->getAttribute('image'));
             $params = $request->getQueryParams();
-            $type = isset($params['type']) ? $params['type'] : 'thumbnail';
+            $type = isset($params['type']) ? $params['type'] : 'fit';
             $w = isset($params['w']) ? $params['w'] : 0;
             $h = isset($params['h']) ? $params['h'] : 0;
             $g = isset($params['g']) ? $params['g'] : 'c';
