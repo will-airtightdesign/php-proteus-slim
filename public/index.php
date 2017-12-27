@@ -23,7 +23,7 @@ require ROOT . DS . 'src' . DS . "handlers.php";
 require ROOT . DS . 'src' . DS . "middleware.php";
 
 // uncomment to test with caching off
-// $app->getContainer()->get('imgcache')->off();
+$app->getContainer()->get('imgcache')->off();
 
 require ROOT . DS . 'src' . DS . 'Routes' . DS . 'resize.php';
 require ROOT . DS . 'src' . DS . 'Routes' . DS . 'crop.php';

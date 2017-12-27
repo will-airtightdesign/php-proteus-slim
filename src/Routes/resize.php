@@ -14,7 +14,12 @@ $app->get('/resize/{image}', function (Request $request, Response $response) {
 
     $img = $imgcache->remember($cachekey, function() use ($request) {
         try {
-            $img = Image::create(ROOT . DS . 'data' . DS . 'img' . DS . $request->getAttribute('image'));
+            $filePath = ROOT . DS . 'data' . DS . 'rackspace' . DS . $request->getAttribute('image');
+            if (!file_exists($filePath)) {
+                $rackspaceUrl = 'https://6ada39ab3e4e4dfd9962-0915b3b9e650afef6a84b370287eeb00.ssl.cf5.rackcdn.com/';
+                file_put_contents($filePath, file_get_contents($rackspaceUrl . basename($filePath)));
+            }
+            $img = Image::create($filePath);
             $params = $request->getQueryParams();
             $type = isset($params['type']) ? $params['type'] : 'fit';
             $w = isset($params['w']) ? $params['w'] : 0;
